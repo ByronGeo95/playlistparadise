@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div
+  style={
+    Object {
+      "color": "#707070",
+      "fontSize": "16px",
+      "fontWeight": "bold",
+    }
+  }
+>
+  Login to get started with Playlist Paradise.
+</div>
+`;
