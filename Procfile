@@ -1,2 +1,2 @@
 web: npm start --prefix frontend
-server: node server.js
+worker: node server.js
