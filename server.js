@@ -105,6 +105,7 @@ mongoose.connection.once('open', function () {
 
 
 if (process.env.NODE_ENV === 'production') {
+    console.log('Im in prod mode');
     app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
     app.get('*', (req, res) => {
@@ -112,7 +113,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-//Express ap listening on port 3001
+//Express app listening on port 3001
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, function () {
     console.log(`App is listening on PORT: ${PORT}`);
