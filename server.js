@@ -104,7 +104,7 @@ mongoose.connection.once('open', function () {
 });
 
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV == 'production') {
     console.log('Im in prod mode');
     //app.use(express.static(path.join(__dirname, 'frontend', 'build')));
     app.use(express.static(path.join(__dirname, 'frontend', 'build'), {
