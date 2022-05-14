@@ -24,6 +24,14 @@ const app = express();
 
 // app.use(express.static(path.join(__dirname,'frontend/build')));
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    });
+
+}
+
 app.use(helmet());
 
 //Require Bosy Parser (50mb limit for images)
@@ -104,20 +112,26 @@ mongoose.connection.once('open', function () {
 });
 
 
-if (process.env.NODE_ENV == 'production') {
-    console.log('Im in prod mode');
-    //app.use(express.static(path.join(__dirname, 'frontend', 'build')));
-    app.use(express.static(path.join(__dirname, 'frontend', 'build'), {
-  setHeaders: function (res, path) {
-    res.set('Content-Security-Policy', '');
-    res.set('Cross-Origin-Resource-Policy', 'cross-origin');
-  }
-}));
+// if (process.env.NODE_ENV == 'production') {
+//     console.log('Im in prod mode');
+//     app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-    });
-}
+// //     app.use(express.static(path.join(__dirname, 'frontend', 'build'), {
+
+// //     setHeaders: function (res, path) {
+// //         res.set('Content-Security-Policy', '');
+// //         res.set('Cross-Origin-Resource-Policy', 'cross-origin');
+// //    }
+
+// //  }
+// // )
+// // );
+
+
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+//     });
+// }
 
 // app.use(express.static(path.join(__dirname, 'frontend', 'build'), {
 //   setHeaders: function (res, path) {
