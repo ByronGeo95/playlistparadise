@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-            "build": "cd frontend && npm run build",
-            "install-client": "cd frontend && npm install",
-            "heroku-postbuild": "npm run install-frontend && npm run build",
-            "server": "nodemon server.js",
-            "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix frontend\"",
-            "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix frontend\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "frontend": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "client": "npm run start --prefix frontend",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend && mv frontend/build/static ./static"
   },
   "author": "",
   "license": "ISC",
