@@ -106,12 +106,25 @@ mongoose.connection.once('open', function () {
 
 if (process.env.NODE_ENV === 'production') {
     console.log('Im in prod mode');
-    app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+    //app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+    app.use(express.static(path.join(__dirname, 'frontend', 'build'), {
+  setHeaders: function (res, path) {
+    res.set('Content-Security-Policy', '');
+    res.set('Cross-Origin-Resource-Policy', 'cross-origin');
+  }
+}));
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
     });
 }
+
+// app.use(express.static(path.join(__dirname, 'frontend', 'build'), {
+//   setHeaders: function (res, path) {
+//     res.set('Content-Security-Policy', '');
+//     res.set('Cross-Origin-Resource-Policy', 'cross-origin');
+//   }
+// }));
 
 //Express app listening on port 3001
 const PORT = process.env.PORT || 3001;
