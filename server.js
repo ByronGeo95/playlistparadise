@@ -123,7 +123,7 @@ if (process.env.NODE_ENV === 'production') {
     //     }
     // }));
 
-    app.use(express.static(path.join(__dirname, 'frontend', 'build'), {
+    app.use(express.static(path.join(__dirname, './frontend', 'build'), {
   setHeaders: function (res, path) {
     res.set('Content-Security-Policy', '');
     res.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
