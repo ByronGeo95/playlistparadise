@@ -10,6 +10,7 @@
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
     "client": "npm run start --prefix frontend",
+    "install-client": "cd frontend && npm install",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend && mv frontend/build/static ./static"
   },
   "author": "",
